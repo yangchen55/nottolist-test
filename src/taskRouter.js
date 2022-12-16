@@ -52,27 +52,27 @@ router.get("/", async(req, res) => {
 });
 
 // // U(Update) => update some information of existing data int he database and respond client accordingly
-// router.put("/", async(req, res) => {
+router.put("/", async(req, res) => {
 
-//  const {_id, type} = req.body;
-//  console.log(req.body);
+ const {_id, type} = req.body;
+//  console.log("taskrou",req.body);
 
  
 
-//   const result = await updateTask(_id, {type});
-//   console.log(result);
+  const result = await updateTask(_id, {type});
+  console.log(result);
 
-//   if(result?._id){
-//     res.json({ message: "data has been updated", status: "success" });
+  if(result?._id){
+    res.json({ message: "data has been updated", status: "success" });
 
-//   }else{
-//     res.json({ message: "data not found", status: "success" });
+  }else{
+    res.json({ message: "data not found", status: "success" });
 
 
-//   }
+  }
    
 
-// });
+});
 
 // //D(Delete) => Delete data(s) from database and response client accordingly
 router.delete("/", async (req, res) => {
