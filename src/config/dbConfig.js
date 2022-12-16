@@ -1,12 +1,15 @@
 import mongoose from 'mongoose';
 
-const mongoConnect = async () => {
+ export const mongoConnect =  () => {
 
     try{
+    
+    // const conStr = "mongodb://localhost:27017/nottodolist";
+    const conStr = "mongodb+srv://notToDoList:abcdef12@cluster0.k4qvjoj.mongodb.net/nottodolist?retryWrites=true&w=majority"
 
-    const conStr  = 'mongodb://localhost:27017/Tasktest'
-    const con = await mongoose.connect(conStr);
-    con && console.log("mongodb connected !!")
+    // const conStr  = process.env.MONGO_CLIENT;
+    const conn = mongoose.connect(conStr);
+    conn && console.log("mongodb connected !!")
 
     }catch(error){
         console.log(error);
@@ -14,4 +17,6 @@ const mongoConnect = async () => {
     
 
 };
-export default mongoConnect;
+
+
+

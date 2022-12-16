@@ -1,19 +1,15 @@
+import dotenv from "dotenv";
+dotenv.config();
+
+
 import express from "express";
 import cors from "cors";
 import path from 'path';
 import morgan from "morgan";
 
 const app = express();
-const PORT = 9000;
-
-
-
-
-
-
-
-
-
+const PORT = process.env.PORT || 9000;
+console.log(process.env.MONGO_CLIENT);
 
 
 //middleware
@@ -21,7 +17,7 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(cors());
 
-import mongoConnect from './src/config/dbConfig.js'
+import {mongoConnect} from './src/config/dbConfig.js'
 mongoConnect();
 
 
@@ -29,14 +25,14 @@ mongoConnect();
 import taskRouter from './src/taskRouter.js'
 app.use('/api/v1/task', taskRouter);
 
-// const __dirname = path.resolve();
-// console.log(__dirname);
+const __dirname = path.resolve();
+console.log();
 
-// app.use(express.static(path.join(__dirname, "/reactfrontnottodo/build")))
+app.use(express.static(path.join(__dirname, "/client/build")))
 
-// app.use('/', (req, res)  => {
-//   res.sendFIle(path.join(__dirname, "/reactfrontnottodo/build/index.html"));
-// });
+app.use('/a', (req, res)  => {
+  res.sendFIle(path.join(__dirname, "/client/build/index.html"));
+});
 
 
 
